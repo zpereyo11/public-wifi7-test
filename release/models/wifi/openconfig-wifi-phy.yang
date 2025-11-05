@@ -325,8 +325,11 @@ module openconfig-wifi-phy {
     }
 
     leaf preamble-puncturing {
-      when "oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE'
-        or oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX'";
+      when "../../../../oc-access-points:ssids/oc-access-points:ssid[
+                oc-access-points:config/oc-access-points:radio-id = current()/../oc-access-points:id and
+                (oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
+                 oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')
+             ]";
       type boolean;
       description
         "Enable Preamble Puncturing on this radio";
@@ -334,7 +337,10 @@ module openconfig-wifi-phy {
 
     leaf mru {
       when "../ofdma = 'true' and
-           oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE'";
+            ../../../../oc-access-points:ssids/oc-access-points:ssid[
+                oc-access-points:config/oc-access-points:radio-id = current()/../oc-access-points:id and
+           oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE'
+           ]";
       type boolean;
       description
         "Enable/Disable MRU on this radio when OFDMA is enabled";
