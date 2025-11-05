@@ -10,6 +10,8 @@ module openconfig-wifi-phy {
 
   // Imports
   import openconfig-yang-types { prefix oc-yang; }
+  import openconfig-access-points { prefix oc-access-points }
+  import openconfig-wifi-mac { prefix oc-wifi-mac }
   // OC-specific types
   import openconfig-extensions { prefix oc-ext; }
   import openconfig-types { prefix oc-types; }
@@ -339,11 +341,16 @@ module openconfig-wifi-phy {
     }
 
     leaf ofdma {
-      when "../../../../ssids/ssid/config/wifi-protocol = 'oc-wifi-types:WIFI_80211_BE'
-        or ../../../../ssids/ssid/config/wifi-protocol = 'oc-wifi-types:WIFI_80211_AX'";
+      when "../../../../oc-access-points:ssids/oc-access-points:ssid[
+                oc-access-points:config/oc-access-points:radio-id = current()/../oc-access-points:id and
+                (oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
+                 oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')
+             ]";
       type boolean;
       description
-        "Enable/Disable OFDMA DL/UL on this radio";
+        "Enable/Disable OFDMA DL/UL on this radio.
+         This leaf is only active if this radio is assigned to at least one
+         SSID that is configured for 802.11ax (WiFi 6) or 802.11be (WiFi 7).";
     }
   }
 
