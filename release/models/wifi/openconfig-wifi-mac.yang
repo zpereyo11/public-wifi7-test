@@ -667,7 +667,7 @@ module openconfig-wifi-mac {
           }
         	config false;
           description
-            "MLD-address of the SSID.";
+            "References the MLD-address of the SSID.";
         }
 
         container state {
@@ -696,6 +696,12 @@ module openconfig-wifi-mac {
       type uint8;
       description
         "The configured id of the radio";
+    }
+
+    leaf mld-address {
+      type oc-yang:mac-address;
+      description
+        "The MLD-Address of the SSID";
     }
 
     leaf num-associated-clients {
