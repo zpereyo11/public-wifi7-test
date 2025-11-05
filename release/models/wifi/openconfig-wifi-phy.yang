@@ -335,7 +335,7 @@ module openconfig-wifi-phy {
         "Enable Preamble Puncturing on this radio";
     }
 
-    leaf wifi-protocol-ref {
+    leaf wifi-protocol {
       type leafref {
         path "oc-wifi-mac:ssids/ssid/config/wifi-protocol";
       }
