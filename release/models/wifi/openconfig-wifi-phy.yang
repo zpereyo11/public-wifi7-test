@@ -10,8 +10,8 @@ module openconfig-wifi-phy {
 
   // Imports
   import openconfig-yang-types { prefix oc-yang; }
-  import openconfig-access-points { prefix oc-access-points }
-  import openconfig-wifi-mac { prefix oc-wifi-mac }
+  import openconfig-access-points { prefix oc-access-points; }
+  import openconfig-wifi-mac { prefix oc-wifi-mac; }
   // OC-specific types
   import openconfig-extensions { prefix oc-ext; }
   import openconfig-types { prefix oc-types; }
