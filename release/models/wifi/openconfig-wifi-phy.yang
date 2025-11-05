@@ -337,7 +337,7 @@ module openconfig-wifi-phy {
 
     leaf wifi-protocol-ref {
       type leafref {
-        path "oc-wifi-mac:ssids/ssid/config/wifi-protocol";
+        path "../../../../oc-wifi-mac:ssids/ssid/config/wifi-protocol";
       description
         "Reference to wifi-protocol";
       }
