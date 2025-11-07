@@ -325,41 +325,25 @@ module openconfig-wifi-phy {
     }
 
     leaf preamble-puncturing {
-      when "../../../../oc-access-points:ssids/oc-access-points:ssid[
-                oc-access-points:config/oc-access-points:radio-id = current()/../oc-access-points:id and
-                (oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
-                 oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')
-             ]";
+      when "(oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
+            oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')";
       type boolean;
       description
         "Enable Preamble Puncturing on this radio";
     }
 
-    leaf wifi-protocol {
-      type leafref {
-        path "oc-wifi-mac:ssids/ssid/config/wifi-protocol";
-      }
-      description
-        "Reference to wifi-protocol";
-    }
-
     leaf mru {
       when "../ofdma = 'true' and
-            ../../../../oc-access-points:ssids/oc-access-points:ssid[
-                oc-access-points:config/oc-access-points:radio-id = current()/../oc-access-points:id and
-           oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE'
-           ]";
+           (oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
+           oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')";
       type boolean;
       description
         "Enable/Disable MRU on this radio when OFDMA is enabled";
     }
 
     leaf ofdma {
-      when "../../../../oc-access-points:ssids/oc-access-points:ssid[
-                oc-access-points:config/oc-access-points:radio-id = current()/../oc-access-points:id and
-                (oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
-                 oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')
-             ]";
+      when "(oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_BE' or
+            oc-wifi-mac:config/oc-wifi-mac:wifi-protocol = 'oc-wifi-types:WIFI_80211_AX')";
       type boolean;
       description
         "Enable/Disable OFDMA DL/UL on this radio.
